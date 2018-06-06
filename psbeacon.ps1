@@ -4,7 +4,7 @@ param (
     [float]  $interval = 1,   # Average time between beacons in seconds
     [float]  $jitter   = .25, # Jitter to add to $interval
     [float]  $count    = 10,  # Number of beacons
-    [string] $domain          # Domain to which to beacon
+    [string] $domain          # Domain and protocol (e.g. http://example.com) to which to beacon
 )
 
 # Make sure we have a domain to which to beacon
