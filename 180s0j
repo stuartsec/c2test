@@ -1,0 +1,34 @@
+# IronNet Powershell Beaconing Tool
+
+$interval = 180;
+$jitter = .0;
+$count = 10;
+$domain = "http://firstcoastalcu.com";
+
+# Make sure we have a domain to which to beacon
+if ("" -eq $domain) {
+    write-error "Please specify a domain with -domain";
+    exit 1;
+}
+
+# Calculate minimum and maximum sleep
+$minSleep = ($interval - ($jitter * $interval)) * 1000;
+$maxSleep = ($interval + ($jitter * $interval)) * 1000;
+
+echo ("Will beacon between " + $minSleep + "ms and " + $maxSleep + "ms to " + $domain + ".");
+
+for ($i = 0; $i -lt $count; $i++) {
+    # Add a path to the URL
+    $url = $domain+"/"+$i+".txt";
+    echo ("Beacon: " + $url + ".");
+    # Try to grab the URL
+    try {
+        (New-Object system.net.webclient).DownloadString($url) | Out-Null;
+    } catch {
+        echo ("Error:  " + $_);
+    }
+    # Sleep a bit before the next beacon
+    $sleep = (Get-Random -Minimum $minSleep -Maximum $maxSleep);
+    echo ("Sleep:  " + $sleep + "ms");
+    Start-Sleep -Milliseconds $sleep;
+}
