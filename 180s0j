@@ -1,7 +1,7 @@
 # IronNet Powershell Beaconing Tool
 
 $interval = 180;
-$jitter = .0;
+$jitter = 0.0;
 $count = 10;
 $domain = "http://firstcoastalcu.com";
 
@@ -28,7 +28,10 @@ for ($i = 0; $i -lt $count; $i++) {
         echo ("Error:  " + $_);
     }
     # Sleep a bit before the next beacon
-    $sleep = (Get-Random -Minimum $minSleep -Maximum $maxSleep);
+    $sleep = $minSleep;
+    if ($minSleep -ne $maxSleep) {
+        $sleep = (Get-Random -Minimum $minSleep -Maximum $maxSleep);
+    }
     echo ("Sleep:  " + $sleep + "ms");
     Start-Sleep -Milliseconds $sleep;
 }

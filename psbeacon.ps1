@@ -30,7 +30,10 @@ for ($i = 0; $i -lt $count; $i++) {
         echo ("Error:  " + $_);
     }
     # Sleep a bit before the next beacon
-    $sleep = (Get-Random -Minimum $minSleep -Maximum $maxSleep);
+    $sleep = $minSleep;
+    if ($minSleep -ne $maxSleep) {
+        $sleep = (Get-Random -Minimum $minSleep -Maximum $maxSleep);
+    }
     echo ("Sleep:  " + $sleep + "ms");
     Start-Sleep -Milliseconds $sleep;
 }
