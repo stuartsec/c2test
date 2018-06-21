@@ -15,14 +15,7 @@ http://domain/COUNTER.txt, where COUNTER is an incrementing decimal number.
 
 #>
 
-
-
-# IronNet Powershell Beaconing Tool
-
-
-
 param (
-
     # Average time between beacons in seconds
     [float]  $interval = 1,
     # Jitter to add to the beacon interval, as a value between 0 and 1
