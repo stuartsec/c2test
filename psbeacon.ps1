@@ -1,10 +1,36 @@
+<#
+
+.SYNOPSIS
+
+Make jittery HTTP beacons.
+
+.DESCRIPTION
+
+This script makes repeated, possibly jittery HTTP requests to a domain.  Each request will be of the form
+http://domain/COUNTER.txt, where COUNTER is an incrementing decimal number.
+
+.EXAMPLE
+
+.\psbeacon.ps1 -interval 10 -jitter .3 -count 20 -domain https://example.org
+
+#>
+
+
+
 # IronNet Powershell Beaconing Tool
 
+
+
 param (
-    [float]  $interval = 1,   # Average time between beacons in seconds
-    [float]  $jitter   = .25, # Jitter to add to $interval
-    [float]  $count    = 10,  # Number of beacons
-    [string] $domain          # Domain and protocol (e.g. http://example.com) to which to beacon
+
+    # Average time between beacons in seconds
+    [float]  $interval = 1,
+    # Jitter to add to the beacon interval, as a value between 0 and 1
+    [float]  $jitter   = .25,
+    # Number of beacons
+    [float]  $count    = 10,
+    # Domain and protocol (e.g. http://example.com) to which to beacon
+    [string] $domain
 )
 
 # Make sure we have a domain to which to beacon
