@@ -17,7 +17,7 @@ Chrome 67, OS X: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537
 
 .EXAMPLE
 
-Make 20 beacons at an interval between 7ish and 13ish secondns to example.org
+Make 20 beacons at an interval between 7ish and 13ish seconds to example.org
 
 .\psbeacon.ps1 -interval 10 -jitter .3 -count 20 -domain https://example.org
 
@@ -76,7 +76,6 @@ for (;;) {
         break;
     }
 
-    # Give up if this is the last beacon
     # Sleep a bit before the next beacon
     $sleep = $minSleep;
     if ($minSleep -ne $maxSleep) {
