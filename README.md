@@ -1,6 +1,7 @@
 Welcome
 =======
 
+```
 In taberna quando sumus,
 non curamus quid sit humus,
 sed ad ludum properamus,
@@ -63,3 +64,4 @@ sic nos rodunt omnes gentes
 et sic erimus egentes.
 Qui nos rodunt confundantur
 et cum iustis non scribantur.
+```
