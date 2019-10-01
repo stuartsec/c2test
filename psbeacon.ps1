@@ -85,12 +85,6 @@ $maxSleep = ($interval + ($jitter * $interval)) * 1000;
 
 echo ("Will beacon between " + $minSleep + "ms and " + $maxSleep + "ms to " + $domain + ".");
 
-$ieObject = $null;
-if ($useIE) {
-    $ieObject = New-Object -ComObject 'InternetExplorer.Application';
-    $ieObject.Visible = $true;
-}
-
 $i = 0;
 for (;;) {
     echo "Time:   $(date)";
@@ -100,8 +94,14 @@ for (;;) {
     echo ("Beacon: " + $url + ".");
     # Try to grab the URL
     try {
-	if ($useIE) {
-            $ieobject.Navigate($url);
+        if ($useIE) {
+            if ($null -ne $ieObject) {
+                $ieObject.Quit();
+                [System.Runtime.InteropServices.Marshal]::ReleaseComObject($ieObject);
+            }
+            $ieObject = New-Object -ComObject 'InternetExplorer.Application';
+            $ieObject.Visible = $true;
+            $ieObject.Navigate($url);
         } else {
             $wc = (New-Object system.net.webclient);
             if ("" -ne $useragent) {
