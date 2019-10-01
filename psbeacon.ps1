@@ -99,9 +99,8 @@ for (;;) {
                 $ieObject.Quit();
                 [System.Runtime.InteropServices.Marshal]::ReleaseComObject($ieObject);
             }
-            $ieObject = New-Object -ComObject 'InternetExplorer.Application';
-            $ieObject.Visible = $true;
-            $ieObject.Navigate($url);
+            $ieObject = New-Object -ComObject 'InternetExplorer.Application'
+            $ieObject.Navigate($url) | Out-Null;
         } else {
             $wc = (New-Object system.net.webclient);
             if ("" -ne $useragent) {
@@ -132,4 +131,4 @@ for (;;) {
     Start-Sleep -Milliseconds $sleep;
 }
 
-# vim:ff=dos
+# vim:ff=dos ts=4 sw=4
