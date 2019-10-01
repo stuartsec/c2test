@@ -68,7 +68,9 @@ param (
     # User-agent to send to the server
     [string] $useragent,
     # True to send a GET
-    [switch] $sendget
+    [switch] $sendget,
+    # True to use IE to do the requests
+    [switch] $useIE
 )
 
 # Make sure we have a domain to which to beacon
@@ -83,6 +85,12 @@ $maxSleep = ($interval + ($jitter * $interval)) * 1000;
 
 echo ("Will beacon between " + $minSleep + "ms and " + $maxSleep + "ms to " + $domain + ".");
 
+$ieObject = $null;
+if ($useIE) {
+    $ieObject = New-Object -ComObject 'InternetExplorer.Application';
+    $ieObject.Visible = $true;
+}
+
 $i = 0;
 for (;;) {
     echo "Time:   $(date)";
@@ -92,14 +100,18 @@ for (;;) {
     echo ("Beacon: " + $url + ".");
     # Try to grab the URL
     try {
-        $wc = (New-Object system.net.webclient);
-        if ("" -ne $useragent) {
-            $wc.Headers['User-Agent'] = $useragent;
-        }
-        if ($sendGet) {
-            $wc.DownloadString($url) | Out-Null; # | iex
+	if ($useIE) {
+            $ieobject.Navigate($url);
         } else {
-            $wc.UploadString($url, $path) | Out-Null; # | iex
+            $wc = (New-Object system.net.webclient);
+            if ("" -ne $useragent) {
+                $wc.Headers['User-Agent'] = $useragent;
+            }
+            if ($sendGet) {
+                $wc.DownloadString($url) | Out-Null; # | iex
+            } else {
+                $wc.UploadString($url, $path) | Out-Null; # | iex
+            }
         }
     } catch {
         echo ("Error:  " + $_);
